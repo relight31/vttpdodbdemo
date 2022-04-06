@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import vttp.dodbdemo.controllers.FriendlistController;
 import vttp.dodbdemo.repository.FriendlistRepo;
 
+// remember to autoconfigure mockmvc if using
 @AutoConfigureMockMvc
 @SpringBootTest
 class DodbdemoApplicationTests {
