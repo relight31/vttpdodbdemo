@@ -55,4 +55,10 @@ public class FriendlistRepo {
         logger.log(Level.INFO, "Retrieved " + friends.size() + " records");
         return friends;
     }
+
+    public boolean deleteFriendRecord(String email) {
+        int deleted = template.update(SQL_DELETE_FRIEND, email);
+        logger.log(Level.INFO, "Successfully deleted " + deleted + " record(s)");
+        return deleted > 0;
+    }
 }
