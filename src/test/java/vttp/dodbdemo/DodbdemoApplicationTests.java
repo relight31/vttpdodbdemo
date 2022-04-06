@@ -39,11 +39,13 @@ class DodbdemoApplicationTests {
 		assertNotNull(repo);
 	}
 
+	// a bit pointless to test this cos you are just testing sql
 	@Test
 	void getRecordsTest() {
 		assertTrue(repo.getAllFriends().size() > 0);
 	}
 
+	// more impt to test logic
 	@Test
 	void addRecordsTest() throws Exception {
 		// construct payload
@@ -63,4 +65,11 @@ class DodbdemoApplicationTests {
 		// delete test record
 		assertTrue(repo.deleteFriendRecord("test@email.com"));
 	}
+
+	// @BeforeEach to setup some mock data before each test
+	// @AfterEach to clean up mock data after each test
+
+	// fail("failure message here") used after return statement if test is supposed
+	// to fail but ends up succeeding instead eg try catch block
+
 }
