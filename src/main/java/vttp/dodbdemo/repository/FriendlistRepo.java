@@ -1,6 +1,8 @@
 package vttp.dodbdemo.repository;
 
 import java.sql.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,6 +11,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.MultiValueMap;
+
+import vttp.dodbdemo.model.Friend;
 
 import static vttp.dodbdemo.repository.Queries.*;
 
@@ -39,5 +43,16 @@ public class FriendlistRepo {
                 form.getFirst("passphrase"));
         logger.log(Level.INFO, "Successfully created " + added + " record(s)");
         return added > 0;
+    }
+
+    public List<Friend> getAllFriends() {
+        List<Friend> friends = new LinkedList<>();
+        final SqlRowSet result = template.queryForRowSet(SQL_GET_ALL_FRIENDS);
+        while (result.next()) {
+            Friend friend = Friend.createWithoutPassphrase(result);
+            friends.add(friend);
+        }
+        logger.log(Level.INFO, "Retrieved " + friends.size() + " records");
+        return friends;
     }
 }

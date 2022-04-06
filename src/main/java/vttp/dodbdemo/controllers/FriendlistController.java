@@ -21,7 +21,8 @@ public class FriendlistController {
     private FriendlistRepo friendlistRepo;
 
     @GetMapping(path = "/")
-    public String landing() {
+    public String landing(Model model) {
+        model.addAttribute("friends", friendlistRepo.getAllFriends());
         return "index";
     }
 
@@ -40,6 +41,7 @@ public class FriendlistController {
             model.addAttribute("message", "Record already exists!");
             logger.log(Level.INFO, "Record for " + form.getFirst("email") + " already exists");
         }
+        model.addAttribute("friends", friendlistRepo.getAllFriends());
         return "index";
     }
 }

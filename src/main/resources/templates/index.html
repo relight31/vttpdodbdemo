@@ -48,6 +48,27 @@
         <div class="row">
             <h3 th:text="${message}"></h3>
         </div>
+        <div class="row">
+            <h2>List of Friends</h2>
+            <table class="table">
+                <thead>
+                    <th scope="col">Email</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">DOB</th>
+                </thead>
+                <tbody>
+                    <tr th:each="friend:${friends}">
+                        <td th:text="${friend.email}"></td>
+                        <td th:text="${friend.name}"></td>
+                        <td th:text="${friend.phone}"></td>
+                        <td th:text="${friend.status}"></td>
+                        <td th:text="${friend.dob}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
